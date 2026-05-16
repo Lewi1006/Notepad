@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style/standard.css" />
+    <link rel="stylesheet" href="./style/assets.css" />
+    <link rel="stylesheet" href="./style/fonts.css" />
+    <link rel="stylesheet" href="./style/notes.css" />
+
+    <script src="./scripts/templates.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  
+  <body onload="renderNotes()">
+    <h1>Notepad</h1>
+
+    <div class="inputbox">
+      <p>Title:</p>
+      <input id="note_input_title" type="text"/>
+      <p>Content:</p>
+      <input id="note_input" type="text"/>
+      <button onclick="addNote()">save note</button>
+    </div>
+    
+    <div class="notes-wrapper">
+      <h2>Notes</h2>
+      <div id="content"></div>
+  
+      <h2>Archive</h2>
+      <div id="archive_content"></div>
+
+      <h2>Trash</h2>
+      <div id="trash_content"></div>
+      <div id="permanently_deleted"></div>
+    </div>
+  </body>
+</html>
