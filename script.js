@@ -15,12 +15,19 @@ let permanentlyDeletedTitles = [];
 let permanentlyDeleted = [];
 
 
+
+
+function init(){
+  getFromLocalStorage();
+  renderNotes();
+
+}
+
 // define where notes are displayed --> render notes into content div with for loop / empty content div before rendering into it
 // when are notes displayed --> at onload
 // local storage???
 
 function renderNotes() {
-  getFromLocalStorage();
 
   let contentRef = document.getElementById("content");
   contentRef.innerHTML = "";
