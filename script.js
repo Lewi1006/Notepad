@@ -18,7 +18,7 @@ let trashNotes = [];
 
 
 function init(){
-  getFromLocalStorage();
+  // getFromLocalStorage();
   renderNotes();
 
 }
@@ -84,7 +84,7 @@ function addNote() {
   notesTitles.push(noteTitle);
   notes.push(noteInput);
 
-  saveToLocalStorage();
+  // saveToLocalStorage();
 
   renderNotes();
 
@@ -170,12 +170,6 @@ function recoverNote (indexTrash){
 // permanently delete note --> pushTrashToDelete
 
 function permanentlyDelete(indexTrash) {
-  // let deletedNoteTitle = trashNotesTitles.splice(indexTrash, 1);
-  // permanentlyDeletedTitles.push(deletedNoteTitle[0]);
-
-  // let deletedNote = trashNotes.splice(indexTrash, 1);
-  // permanentlyDeleted.push(deletedNote[0]);
-
   trashNotesTitles.splice(indexTrash, 1);
   trashNotes.splice(indexTrash, 1);
 
@@ -188,20 +182,20 @@ function permanentlyDelete(indexTrash) {
 
 
 
-function saveToLocalStorage() {
-  localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
-  localStorage.setItem("notes", JSON.stringify(notes));
-}
+// function saveToLocalStorage() {
+//   localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
+//   localStorage.setItem("notes", JSON.stringify(notes));
+// }
 
-function getFromLocalStorage() {
-const storedNotesTitles = localStorage.getItem("notesTitles")
-let myArrTitles = JSON.parse(storedNotesTitles);
+// function getFromLocalStorage() {
+// const storedNotesTitles = localStorage.getItem("notesTitles")
+// let myArrTitles = JSON.parse(storedNotesTitles);
 
-  const storedNotes = localStorage.getItem("notes");
-  let myArrNotes = JSON.parse(storedNotes);
+//   const storedNotes = localStorage.getItem("notes");
+//   let myArrNotes = JSON.parse(storedNotes);
 
-  if (myArrTitles !== null && myArrNotes !== null ) {
-    notesTitles = myArrTitles;
-    notes = myArrNotes;
-  }
-}
+//   if (myArrTitles !== null && myArrNotes !== null ) {
+//     notesTitles = myArrTitles;
+//     notes = myArrNotes;
+//   }
+// }

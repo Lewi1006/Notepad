@@ -1,32 +1,26 @@
+body{
+  width: 100%;
+  min-height: 100dvh;
+    background-color: white;
+    background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2) 1px,
+      transparent 1px,
+      transparent 24px
+    );
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .inputbox {
+.inputbox {
   width: 400px;
   height: 100%;
   display: flex;
@@ -41,7 +35,10 @@
   input {
     border: solid black 1px;
     border-radius: 10px;
+    background-color: white;
     width: 300px;
+    padding-left: 10px;
+    caret-color: rgb(255, 8, 131);
   }
 
   input:hover {
@@ -110,4 +107,4 @@
       }
     }
   }
-} */
+}
