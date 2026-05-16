@@ -1,24 +1,18 @@
-body{
+body {
   width: 100%;
   min-height: 100dvh;
-    background-color: white;
-    background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.2) 1px,
-      transparent 1px,
-      transparent 24px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.2) 1px,
-      transparent 1px,
-      transparent 24px
-    );
+  background-color: white;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+
+  background-size: 20px 20px;
 }
 
+.notepad-wrapper {
+  width: 100%;
+  padding: 20px max(calc(50% - 720px), 3rem);
+}
 
 .inputbox {
   width: 400px;
@@ -45,13 +39,12 @@ body{
     cursor: pointer;
   }
 
-
   button {
     background-color: pink;
     width: 100px;
     height: 24px;
     border-radius: 10px;
-    color: rgb(255, 8, 131);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,6 +55,7 @@ body{
 
   button:hover {
     cursor: pointer;
+    color: rgb(255, 8, 131);
   }
 }
 
@@ -72,7 +66,10 @@ body{
   flex-direction: column;
   gap: 20px;
 
-  #content, #archive_content, #trash_content, #permanently_deleted {
+  #content,
+  #archive_content,
+  #trash_content,
+  #permanently_deleted {
     width: 100%;
     height: 100%;
     display: flex;
@@ -97,6 +94,11 @@ body{
         justify-content: space-between;
         align-items: center;
         width: 120px;
+
+        button:hover {
+          cursor: pointer;
+          color: rgb(255, 8, 131);
+        }
       }
 
       h3,
