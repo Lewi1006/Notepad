@@ -11,8 +11,8 @@ let trashNotesTitles = [];
 let trashNotes = [];
 
 // permanently delete from trash
-let permanentlyDeletedTitles = [];
-let permanentlyDeleted = [];
+// let permanentlyDeletedTitles = [];
+// let permanentlyDeleted = [];
 
 
 
@@ -56,14 +56,14 @@ function renderTrashNotes() {
 }
 
 // permanently delete note from trash function
-function renderPermanentlyDeleted() {
-  let permanentlyDeletedRef = document.getElementById("permanently_deleted");
-  permanentlyDeletedRef.innerHTML = "";
+// function renderPermanentlyDeleted() {
+//   let permanentlyDeletedRef = document.getElementById("permanently_deleted");
+//   permanentlyDeletedRef.innerHTML = "";
 
-  for (let indexDeleted = 0; indexDeleted < permanentlyDeleted.length; indexDeleted ++) {
-    permanentlyDeletedRef.innerHTML += getPermanentlyDeletedTemplate(indexDeleted);
-  }
-}
+//   for (let indexDeleted = 0; indexDeleted < permanentlyDeleted.length; indexDeleted ++) {
+//     permanentlyDeletedRef.innerHTML += getPermanentlyDeletedTemplate(indexDeleted);
+//   }
+// }
 
 
 
@@ -129,10 +129,10 @@ function pushNoteToTrash(indexNote) {
 
 function pushArchiveToNotes(indexArchive){
 let notesTitle = archiveNotesTitles.splice(indexArchive, 1);
-notesTitles.push(indexArchive[0]);
+notesTitles.push(notesTitle[0]);
 
 let note = archiveNotes.splice(indexArchive, 1);
-notes.push(indexArchive[0]);
+notes.push(note[0]);
 
 renderNotes();
 renderArchiveNotes();
@@ -170,14 +170,16 @@ function recoverNote (indexTrash){
 // permanently delete note --> pushTrashToDelete
 
 function permanentlyDelete(indexTrash) {
-  let deletedNoteTitle = trashNotesTitles.splice(indexTrash, 1);
-  permanentlyDeletedTitles.push(deletedNoteTitle[0]);
+  // let deletedNoteTitle = trashNotesTitles.splice(indexTrash, 1);
+  // permanentlyDeletedTitles.push(deletedNoteTitle[0]);
 
-  let deletedNote = trashNotes.splice(indexTrash, 1);
-  permanentlyDeleted.push(deletedNote[0]);
+  // let deletedNote = trashNotes.splice(indexTrash, 1);
+  // permanentlyDeleted.push(deletedNote[0]);
+
+  trashNotesTitles.splice(indexTrash, 1);
+  trashNotes.splice(indexTrash, 1);
 
   renderTrashNotes();
-  renderPermanentlyDeleted();
 }
 
 
@@ -187,14 +189,19 @@ function permanentlyDelete(indexTrash) {
 
 
 function saveToLocalStorage() {
+  localStorage.setItem("notesTitles", JSON.stringify(notesTitles));
   localStorage.setItem("notes", JSON.stringify(notes));
 }
 
 function getFromLocalStorage() {
-  const storedNotes = localStorage.getItem("notes");
-  let myNewArr = JSON.parse(storedNotes);
+const storedNotesTitles = localStorage.getItem("notesTitles")
+let myArrTitles = JSON.parse(storedNotesTitles);
 
-  if (myNewArr !== null) {
-    notes = myNewArr;
+  const storedNotes = localStorage.getItem("notes");
+  let myArrNotes = JSON.parse(storedNotes);
+
+  if (myArrTitles !== null && myArrNotes !== null ) {
+    notesTitles = myArrTitles;
+    notes = myArrNotes;
   }
 }

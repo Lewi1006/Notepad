@@ -23,7 +23,7 @@ function getArchiveNoteTemplate(indexArchive){
         <p>${archiveNotes[indexArchive]}</p>
         <div class="button-wrapper">
         <button onclick ="pushArchiveToTrash(${indexArchive})">Trash</button>
-        <button onclick="pushNoteToArchive(${indexArchive})">Unarchive</button>
+        <button onclick="pushArchiveToNotes(${indexArchive})">Unarchive</button>
         </div>
     </div>
     
@@ -40,22 +40,19 @@ function getTrashNoteTemplate(indexTrash){
         <p>${trashNotes[indexTrash]}</p>
         <div class="button-wrapper">
         <button onclick ="permanentlyDelete(${indexTrash})">Delete</button>
-        <button onclick="pushNoteToArchive(${indexTrash})">Recover</button>
+        <button onclick="recoverNote(${indexTrash})">Recover</button>
         </div>
     </div>
     `
 }
 
+
 // permanently delete
-function getPermanentlyDeletedTemplate(indexDeleted){
-    return `
-     <div class ="note-card">
-        <h3>${permanentlyDeleted[indexDeleted]}</h3>
-        <p>${permanentlyDeleted[indexDeleted]}</p>
-        <div class="button-wrapper">
-        <button onclick ="permanentlyDelete(${indexDeleted})">Trash</button> 
-        <button onclick="pushNoteToArchive(${indexDeleted})">Archive</button>
-        </div>
-    </div>
-    `
-}
+// function getPermanentlyDeletedTemplate(indexDeleted){
+//     return `
+//      <div class ="note-card">
+//         <h3>${permanentlyDeletedTitles[indexDeleted]}</h3>
+//         <p>${permanentlyDeleted[indexDeleted]}</p>
+//     </div>
+//     `
+// }
