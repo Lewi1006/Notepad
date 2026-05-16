@@ -1,7 +1,6 @@
-// display notes:
-// I need notes to display --> in an array
-let notesTitles = ["To-do", "Reminder"];
-let notes = ["clean kitchen", "book train ticket"];
+// notes array
+let notesTitles = ["A", "B"];
+let notes = ["1", "2"];
 
 // archive array
 let archiveNotesTitles = [];
@@ -15,8 +14,9 @@ let trashNotes = [];
 let permanentlyDeletedTitles = [];
 let permanentlyDeleted = [];
 
+
 // define where notes are displayed --> render notes into content div with for loop / empty content div before rendering into it
-// when are notes displayed
+// when are notes displayed --> at onload
 // local storage???
 
 function renderNotes() {
@@ -24,18 +24,17 @@ function renderNotes() {
 
   let contentRef = document.getElementById("content");
   contentRef.innerHTML = "";
-  for (let i = 0; i < notes.length; i++) {
-    contentRef.innerHTML += getNoteTemplate(i);
+  for (let indexNote = 0; indexNote < notes.length; indexNote++) {
+    contentRef.innerHTML += getNoteTemplate(indexNote);
   }
 }
 
 // function for archive
-
 function renderArchiveNotes() {
   let archiveContentRef = document.getElementById("archive_content");
   archiveContentRef.innerHTML = "";
-  for (let a = 0; a < archiveNotes.length; a++) {
-    archiveContentRef.innerHTML += getArchiveNoteTemplate(a);
+  for (let indexArchive = 0; indexArchive < archiveNotes.length; indexArchive++) {
+    archiveContentRef.innerHTML += getArchiveNoteTemplate(indexArchive);
   }
 }
 
@@ -44,8 +43,8 @@ function renderTrashNotes() {
   let trashContentRef = document.getElementById("trash_content");
   trashContentRef.innerHTML = "";
 
-  for (let j = 0; j < trashNotes.length; j++) {
-    trashContentRef.innerHTML += getTrashNoteTemplate(j);
+  for (let indexTrash = 0; indexTrash < trashNotes.length; indexTrash ++) {
+    trashContentRef.innerHTML += getTrashNoteTemplate(indexTrash);
   }
 }
 
@@ -54,15 +53,19 @@ function renderPermanentlyDeleted() {
   let permanentlyDeletedRef = document.getElementById("permanently_deleted");
   permanentlyDeletedRef.innerHTML = "";
 
-  for (let k = 0; k < permanentlyDeleted.length; k++) {
-    permanentlyDeletedRef.innerHTML += getPermanentlyDeletedTemplate(k);
+  for (let indexDeleted = 0; indexDeleted < permanentlyDeleted.length; indexDeleted ++) {
+    permanentlyDeletedRef.innerHTML += getPermanentlyDeletedTemplate(indexDeleted);
   }
 }
 
-// add notes input field --> user defines input
+
+
+
+// add notes input field --> user defines input + button save note and onclick 
 // read input
 // save input --> push input to notes array
 // display input
+// noteTitleRef.value = ""; clears value of input field so it's empty
 
 function addNote() {
   let noteTitleRef = document.getElementById("note_input_title");
@@ -82,29 +85,20 @@ function addNote() {
   noteInputRef.value = "";
 }
 
+
+
 // archive notes
 // [0] because the spliced item is going to be at index 0 in the variable arhciveNote
 
-function pushNoteToArchive(i) {
-  let archiveNoteTitle = notesTitles.splice(i, 1);
+function pushNoteToArchive(indexNote) {
+  let archiveNoteTitle = notesTitles.splice(indexNote, 1);
   archiveNotesTitles.push(archiveNoteTitle[0]);
 
-  let archiveNote = notes.splice(i, 1);
+  let archiveNote = notes.splice(indexNote, 1);
   archiveNotes.push(archiveNote[0]);
 
   renderNotes();
   renderArchiveNotes();
-}
-
-function pushArchiveToTrash(a) {
-  let trashNoteTitle = archiveNotesTitles.splice(a, 1);
-  trashNotesTitles.push(trashNoteTitle[0]);
-
-  let trashNote = archiveNotes.splice(a, 1);
-  trashNotes.push(trashNote[0]);
-
-  renderArchiveNotes();
-  renderTrashNotes();
 }
 
 // push notes to trash
@@ -112,28 +106,78 @@ function pushArchiveToTrash(a) {
 // when must the note be deleted
 // update displayed notes
 
-function pushNoteToTrash(i) {
-  let trashNoteTitle = notesTitles.splice(i, 1);
+function pushNoteToTrash(indexNote) {
+  let trashNoteTitle = notesTitles.splice(indexNote, 1);
   trashNotesTitles.push(trashNoteTitle[0]);
 
-  let trashNote = notes.splice(i, 1);
+  let trashNote = notes.splice(indexNote, 1);
   trashNotes.push(trashNote[0]);
 
   renderNotes();
   renderTrashNotes();
 }
 
-// permanently delete note
 
-function permanentlyDelete(k) {
-  let deletedNoteTitle = trashNotesTitles.splice(k, 1);
+
+
+function pushArchiveToNotes(indexArchive){
+let notesTitle = archiveNotesTitles.splice(indexArchive, 1);
+notesTitles.push(indexArchive[0]);
+
+let note = archiveNotes.splice(indexArchive, 1);
+notes.push(indexArchive[0]);
+
+renderNotes();
+renderArchiveNotes();
+}
+
+
+function pushArchiveToTrash(indexArchive) {
+  let trashNoteTitle = archiveNotesTitles.splice(indexArchive, 1);
+  trashNotesTitles.push(trashNoteTitle[0]);
+
+  let trashNote = archiveNotes.splice(indexArchive, 1);
+  trashNotes.push(trashNote[0]);
+
+  renderArchiveNotes();
+  renderTrashNotes();
+}
+
+
+
+
+
+function recoverNote (indexTrash){
+  let recoveredNoteTitle = trashNotesTitles.splice(indexTrash, 1);
+  notesTitles.push(recoveredNoteTitle[0]);
+
+  let recoveredNote = trashNotes.splice(indexTrash, 1);
+  notes.push(recoveredNote[0]);
+
+  renderNotes();
+  renderTrashNotes();
+
+}
+
+
+// permanently delete note --> pushTrashToDelete
+
+function permanentlyDelete(indexTrash) {
+  let deletedNoteTitle = trashNotesTitles.splice(indexTrash, 1);
   permanentlyDeletedTitles.push(deletedNoteTitle[0]);
 
-  let deletedNote = trashNotes.splice(k, 1);
+  let deletedNote = trashNotes.splice(indexTrash, 1);
   permanentlyDeleted.push(deletedNote[0]);
+
   renderTrashNotes();
   renderPermanentlyDeleted();
 }
+
+
+
+
+
+
 
 function saveToLocalStorage() {
   localStorage.setItem("notes", JSON.stringify(notes));
